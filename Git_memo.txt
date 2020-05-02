@@ -1,0 +1,50 @@
+Gitの使い方
+
+
+・大まかな流れ
+リポ作って⇨クローンして⇨branch作って⇨ファイル修正して⇨addでstagingして⇨commitして⇨(一応)pullして⇨pushして⇨pull request出して⇨mergeして⇨ローカルリポでpull
+
+
+・ローカルにpullする。
+ローカルで作業用ディレクトリに移動
+git clone URL~~
+
+・branchの一覧を確認
+git branch
+
+・新しいbranchを作成
+git checkout -b {branch名}
+
+・branchを移動
+git checkout {branch名}
+
+・ローカルリポの状態を確認
+git status
+
+
+・変更点をaddしてstagingに上げる。
+git add {ファイル名やフォルダ名} 
+
+・今stagingに上がっている全ての変更をcommit
+　（ファイル名の指定は無い）
+git commit -m '{メッセージ}'
+
+
+・push
+ （開発時の作法として、pushの前に必ずpullする）
+①pull
+git pull {repository} {branch} 
+
+※{repository}はgit内で省略コードで登録されているため、以下のコマンドで良い。
+git pull origin master
+
+※省略コードは以下のコマンドで確認。
+git remote -v
+
+②push
+git push {repository} {branch} 
+
+※branchにはmasterは指定しない。
+git push origin update-readme
+
+
