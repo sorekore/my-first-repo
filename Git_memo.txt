@@ -2,20 +2,33 @@ Gitの使い方
 
 
 ・大まかな流れ
-リポ作って⇨クローンして⇨branch作って⇨ファイル修正して⇨addでstagingして⇨commitして⇨(一応)pullして⇨pushして⇨pull request出して⇨mergeして⇨ローカルリポでpull
+リポ作って→クローンして→branch作って→ファイル修正して→addでstagingして→commitして→(一応)pullして→pushして→pull request出して→mergeして→ローカルリポでpull
 
 
 ・ローカルにpullする。
 ローカルで作業用ディレクトリに移動
 git clone URL~~
 
+$ cd ~/Desktop
+$ git clone https://github.com/sorekore/my-first-repo
+
+
 ・branchの一覧を確認
 git branch
+
+$ git branch
+* master
+  update-readme
+
+
+・不要なbranchの削除
+git branch -d {branch名}
+
 
 ・新しいbranchを作成
 git checkout -b {branch名}
 
-・branchを移動
+・ローカルでのbranchの切り替え
 git checkout {branch名}
 
 ・ローカルリポの状態を確認
@@ -24,10 +37,16 @@ git status
 
 ・変更点をaddしてstagingに上げる。
 git add {ファイル名やフォルダ名} 
+※git add . でカレントディレクトリ以下全ての変更をstagingにあげることができる。
+
 
 ・今stagingに上がっている全ての変更をcommit
 　（ファイル名の指定は無い）
 git commit -m '{メッセージ}'
+
+
+・commitの履歴確認
+$ git log
 
 
 ・push
@@ -45,6 +64,9 @@ git remote -v
 git push {repository} {branch} 
 
 ※branchにはmasterは指定しない。
+※ブランチ名はリモートリポ側の名前。
+  基本、ローカルリポと同じ名前にする。
+
 git push origin update-readme
 
 
