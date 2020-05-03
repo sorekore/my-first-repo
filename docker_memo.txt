@@ -1,0 +1,83 @@
+■dockerの使い方
+
+・ログイン
+$docker login
+
+・pull
+$docker pull {IMAGE名:TAG名}
+
+・image一覧を見る。
+$docker images
+
+・imageからコンテナを作成する。
+$docker run {IMAGE名:TAG名}
+
+・imageからコンテナを作成して入る。
+ （runしたとき、ローカルのimageを探してなければレジストリからpullする。）
+$docker run -it {IMAGE名:TAG名} bash
+
+・コンテナ一覧（activeなコンテナのみ表示される）
+$docker ps -a
+
+
+・コンテナ停止
+$exit
+
+・コンテナを再起動
+$docker restart {コンテナ名}
+
+・detachしてコンテナから抜ける（コンテナは起動したままになる）
+ctrl + p + q
+
+
+・動いているコンテナに入る
+$docker exec -it {コンテナ名} bash
+
+・コンテナの削除
+docker rm [コンテナID]
+・イメージの削除
+docker rmi -f [イメージID]
+
+
+・docker imageの共有はDockerレジストリ(今回はDocker Hub)にリポを作る．
+・リポジトリ名＝イメージ名
+
+・commit
+$ docker commit {コンテナ名} {新しいDocker image名}
+
+・新しいイメージ名、タグ名で保存
+$ docker tag  {旧IMAGE名:旧TAG名} {新IMAGE名:新TAG名}
+
+・imageをpush
+$ docker push イメージ名(リポジトリ名)
+
+
+・Dockerfileからimageをビルド
+$ docker build .
+
+※image名を指定してビルド
+$ docker build -t {IMAGE名}:{TAG名} .
+
+
+★Jupyter Labの起動方法
+$ docker start my-lab で起動させてブラウザでlocalhost:8888にアクセスすればJupyter Labに入れます．
+
+docker run -p 8888:8888 -v /C/Users/mytoshiba/Desktop/ds_python:/work --name my-lab 59ad778e616d
+
+
+※Macの設定
+以下のサイトを参考にして構築。localhost:10000で接続。PW:tanaka
+https://qiita.com/Esfahan/items/a3cb8e91e13b96eacc73
+
+・以下のコマンドを実行して接続する。
+docker run -p 8888:8888 -v /Users/tanakaakira/Desktop/ds_python:/home/jovyan/work --name my-lab 063de963585b
+
+
+
+
+※Jupyterで常に新しいモジュールを実行するためのコマンド。
+  （Jupyterの一番上のセルに常に書いておくとよい
+
+%load_ext autoreload
+ 
+%autoreload 2
